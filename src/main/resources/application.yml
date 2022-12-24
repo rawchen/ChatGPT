@@ -1,0 +1,30 @@
+openai:
+  secret-key: sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  completions-url: https://api.openai.com/v1/completions
+
+server:
+  port: 9998
+spring:
+  application:
+    name: ChatGPT
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+    servlet:
+      content-type: text/html
+  web:
+    resources:
+      chain:
+        strategy:
+          content:
+            enabled: true
+            paths: /**
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+  mvc:
+    static-path-pattern: static/**

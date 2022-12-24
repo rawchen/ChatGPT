@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ChatGPT</title>
+	<link rel="shortcut icon" th:href="@{/static/img/favicon.svg}">
+	<link rel="apple-touch-icon" th:href="@{/static/img/favicon.svg}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Theme style -->
+	<link rel="stylesheet" th:href="@{/static/css/adminlte.min.css}">
+	<link rel="stylesheet" th:href="@{/static/css/mystyle.css}">
+	<link rel="stylesheet" th:href="@{/static/plugins/cd-top/css/cd-top.css}">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" th:href="@{/static/plugins/fontawesome-free/css/all.min.css}">
+	<link rel="stylesheet" th:href="@{/static/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+	<!-- Navbar -->
+	<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+		<!-- Left navbar links -->
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-bars"></i></a>
+			</li>
+		</ul>
+	</nav>
+	<!-- /.navbar -->
+
+	<!-- Main Sidebar Container -->
+	<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<!-- Brand Logo -->
+		<h1>
+			<a href="/" class="brand-link">
+				<img src="" class="brand-image img-circle elevation-3">
+				<span class="brand-text font-weight-light">OpenAI</span>
+			</a>
+		</h1>
+
+		<!-- Sidebar -->
+		<div class="sidebar">
+			<!-- Sidebar Menu -->
+			<nav class="mt-2">
+				<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+					<!-- Add icons to the links using the .nav-icon class
+						 with font-awesome or any other icon font library -->
+					<li class="nav-header">读万卷书</li>
+					<li class="nav-item">
+						<a href="/" class="nav-link active">
+							<i class="fa fa-home nav-icon"></i>
+							<p>聊天</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="" class="nav-link">
+							<i class="fa fa-bookmark nav-icon"></i>
+							<p>程序</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="" class="nav-link">
+							<i class="fa fa-tags nav-icon"></i>
+							<p>等等</p>
+						</a>
+					</li>
+
+					<li class="nav-header">行万里路</li>
+					<li class="nav-item">
+						<a href="" class="nav-link">
+							<i class="fa fa-archive nav-icon"></i>
+							<p>等等</p>
+						</a>
+					</li>
+					<li class="nav-header">点滴记录</li>
+					<li class="nav-item">
+						<a class="nav-link">
+							<i class="fa fa-comments nav-icon"></i>
+							<p>等等</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="" class="nav-link">
+							<i class="fas fa-file-code nav-icon"></i>
+							<p>等等</p>
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<!-- /.sidebar-menu -->
+		</div>
+		<!-- /.sidebar -->
+	</aside>
+
+	<!-- Content Wrapper. Contains pa4ge content -->
+	<div class="content-wrapper mt-3">
+		<!-- Main content -->
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-9">
+						<div class="card card-teal card-outline mb-5 bg-color-ea">
+							<!-- /.card-header -->
+							<div class="card-body">
+								<!-- Conversations are loaded here -->
+								<!-- Message to the right -->
+								<div id="chat-list">
+									<div class="direct-chat-msg">
+										<div class="direct-chat-infos clearfix">
+											<a href="" class="direct-chat-name float-left">OpenAI</a>
+											<span class="badge badge-warning float-left ml-1">m3</span>
+											<span class="direct-chat-timestamp float-left ml-2">01月01日</span>
+										</div>
+										<!-- /.direct-chat-infos -->
+										<img class="direct-chat-img position-absolute border" src="/static/img/openai.jpg" alt="">
+										<!-- /.direct-chat-img -->
+										<div class="direct-chat-text float-left"><span class="comm-text"/>我是OpenAI机器人哦<a class="badge" href="javascript:reply()">回复</a>
+										</div>
+										<!-- /.direct-chat-text -->
+									</div>
+
+									<div class="direct-chat-msg right">
+										<div class="direct-chat-infos clearfix">
+											<a href="" class="direct-chat-name float-right">路人甲</a>
+
+											<span class="direct-chat-timestamp float-right mr-2">01月01日</span>
+										</div>
+										<img class="direct-chat-img border position-absolute r-2" src="/static/img/passers.png" alt="">
+										<div class="direct-chat-text float-right"><span class="comm-text">ChatGPT是什么 <img class="smile-img" src="/static/img/tieba/icon_question.png"></span>
+										</div>
+									</div>
+
+									<div class="direct-chat-msg">
+										<div class="direct-chat-infos clearfix">
+											<a href="" class="direct-chat-name float-left">OpenAI</a>
+											<span class="badge badge-warning float-left ml-1">m3</span>
+											<span class="direct-chat-timestamp float-left ml-2">01月01日</span>
+										</div>
+										<img class="direct-chat-img position-absolute border" src="/static/img/openai.jpg" alt="">
+										<div class="direct-chat-text float-left"><span class="comm-text"/>ChatGPT是一种基于自然语言处理的对话机器人技术，它可以根据用户的输入自动生成和调整回复，以模拟人类对话。它可以帮助企业快速构建智能客服机器人，以满足客户的需求。<a class="badge" href="javascript:reply()">回复</a>
+										</div>
+									</div>
+								</div>
+								<!-- /.direct-chat-msg -->
+							</div>
+							<div class="card-footer">
+								<div class="input-group loaders">
+									<div class="loader">
+										<div class="loader-inner ball-beat">
+											<div></div>
+											<div></div>
+											<div></div>
+										</div>
+									</div>
+								</div>
+								<div id="comment-form" class="comment-form" role="form">
+									<textarea name="commentText" id="textarea" class="form-control" placeholder="请想对AI说点啥 0_o" required="required"></textarea>
+
+									<button onclick="saySomeThing()" class="submit" id="misubmit">提交</button>
+									<button type="button" class="submit2" id="cancelReply" style="display: none" onclick="javascript:cancelR()">取消</button>
+									<div id="smiliesbox">
+										<span style="cursor:pointer;" data-tag=" :mrgreen: " title=":mrgreen:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_mrgreen.png" alt="icon_mrgreen.png"></span>
+										<span style="cursor:pointer;" data-tag=" :neutral: " title=":neutral:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_neutral.png" alt="icon_neutral.png"></span>
+										<span style="cursor:pointer;" data-tag=" :twisted: " title=":twisted:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_twisted.png" alt="icon_twisted.png"></span>
+										<span style="cursor:pointer;" data-tag=" :arrow: " title=":arrow:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_arrow.png" alt="icon_arrow.png"></span>
+										<span style="cursor:pointer;" data-tag=" :shock: " title=":shock:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_eek.png" alt="icon_eek.png"></span>
+										<span style="cursor:pointer;" data-tag=" :smile: " title=":smile:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_smile.png" alt="icon_smile.png"></span>
+										<span style="cursor:pointer;" data-tag=" :???: " title=":???:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_confused.png" alt="icon_confused.png"></span>
+										<span style="cursor:pointer;" data-tag=" :cool: " title=":cool:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_cool.png" alt="icon_cool.png"></span>
+										<span style="cursor:pointer;" data-tag=" :evil: " title=":evil:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_evil.png" alt="icon_evil.png"></span>
+										<span style="cursor:pointer;" data-tag=" :grin: " title=":grin:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_biggrin.png" alt="icon_biggrin.png"></span>
+										<span style="cursor:pointer;" data-tag=" :idea: " title=":idea:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_idea.png" alt="icon_idea.png"></span>
+										<span style="cursor:pointer;" data-tag=" :oops: " title=":oops:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_redface.png" alt="icon_redface.png"></span>
+										<span style="cursor:pointer;" data-tag=" :razz: " title=":razz:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_razz.png" alt="icon_razz.png"></span>
+										<span style="cursor:pointer;" data-tag=" :roll: " title=":roll:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_rolleyes.png" alt="icon_rolleyes.png"></span>
+										<span style="cursor:pointer;" data-tag=" :wink: " title=":wink:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_wink.png" alt="icon_wink.png"></span>
+										<span style="cursor:pointer;" data-tag=" :cry: " title=":cry:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_cry.png" alt="icon_cry.png"></span>
+										<span style="cursor:pointer;" data-tag=" :eek: " title=":eek:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_surprised.png" alt="icon_surprised.png"></span>
+										<span style="cursor:pointer;" data-tag=" :lol: " title=":lol:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_lol.png" alt="icon_lol.png"></span>
+										<span style="cursor:pointer;" data-tag=" :mad: " title=":mad:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_mad.png" alt="icon_mad.png"></span>
+										<span style="cursor:pointer;" data-tag=" :sad: " title=":sad:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_sad.png" alt="icon_sad.png"></span>
+										<span style="cursor:pointer;" data-tag=" :!: " title=":!:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_exclaim.png" alt="icon_exclaim.png"></span>
+										<span style="cursor:pointer;" data-tag=" :?: " title=":?:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_question.png" alt="icon_question.png"></span>
+										<span style="cursor:pointer;" data-tag=" :nidongde: " title=":nidongde:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/nidongde.png" alt="nidongde.png"></span>
+										<span style="cursor:pointer;" data-tag=" :xiaoniao: " title=":xiaoniao:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/xiaoniao.png" alt="xiaoniao.png"></span>
+										<span style="cursor:pointer;" data-tag=" :wuzuixiao: " title=":wuzuixiao:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/wuzuixiao.png" alt="wuzuixiao.png"></span>
+										<span style="cursor:pointer;" data-tag=" :weiqu: " title=":weiqu:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/weiqu.png" alt="weiqu.png"></span>
+										<span style="cursor:pointer;" data-tag=" :yamiedie: " title=":yamiedie:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/yamiedie.png" alt="yamiedie.png"></span>
+									</div>
+									<span style="cursor:pointer;" id="smiliesbutton" title="选择表情">
+        								<img src="/static/img/tieba/icon_smile.png" alt="选择表情" style="max-width:30px;">
+									</span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!-- /.col -->
+					<div class="col-md-3">
+						<!-- Profile Image -->
+						<div class="card widget-user sticky-top">
+							<!-- Add the bg color to the header using any of the bg-* classes -->
+							<div class="widget-user-header bg-info">
+								<h3 class="widget-user-username">OpenAI</h3>
+							</div>
+							<div class="widget-user-image">
+								<img class="img-circle elevation-2" src="/static/img/openai.jpg" alt="Avatar">
+							</div>
+							<div class="card-body pt-5">
+								<p class="text-muted" style="text-align: center">CHAT
+								</p>
+
+								<ul class="list-group list-group-unbordered">
+									<li class="list-group-item">
+										<strong><i class="far fa-bookmark mr-2"></i>推荐</strong>
+										<div>
+											<a href="" class="d-block link-title text-truncate">暂无暂无暂无</a>
+										</div>
+									</li>
+
+									<li class="list-group-item">
+										<strong><i class="fas fa-map-marker-alt mr-2"></i>位置</strong>
+										<div class="text-muted">Singapore</div>
+									</li>
+
+									<li class="list-group-item">
+										<strong><i class="fas fa-code-branch mr-2"></i>次数</strong>
+										<div class="text-muted" >
+											<span class="badge badge-success mr-1" id="submit-count"></span>
+										</div>
+									</li>
+
+									<li class="list-group-item">
+										<strong><i class="fas fa-link mr-2"></i>开源</strong>
+										<div class="text-muted">
+											<a href="https://github.com/rawchen/ChatGPT" target="_blank" class="badge badge-warning">GitHub</a>
+										</div>
+									</li>
+
+									<li class="list-group-item text-center">
+										<a href="https://wpa.qq.com/msgrd?v=3&uin=2221999792" target="_blank"
+										   class="btn btn-success btn-sm rounded-circle" data-toggle="tooltip"
+										   data-placement="top" title="QQ">
+											<i class="fa fa-qq"></i>
+										</a>
+										<a href="https://t.me/rawchen" target="_blank"
+										   class="btn btn-success btn-sm rounded-circle" data-toggle="tooltip"
+										   data-placement="top" title="Telegram">
+											<i class="fa fa-telegram"></i>
+										</a>
+										<a href="https://github.com/rawchen" target="_blank"
+										   class="btn btn-success btn-sm rounded-circle" data-toggle="tooltip"
+										   data-placement="top" title="GitHub">
+											<i class="fa fa-github text-white"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+			</div><!-- /.container-fluid -->
+		</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+	<footer class="main-footer">
+		<a href="#0" class="cd-top">Top</a>
+		<p class="text-center mb-1">
+			Copyright © 2020-2021 | THE HARDER, THE MORE FORTUNATE.
+		</p>
+		<p class="text-center mb-1">
+			<a href="https://beian.miit.gov.cn/">闽ICP备18008354号-5</a>
+		</p>
+	</footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script th:src="@{/static/js/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/static/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/static/js/adminlte.min.js}"></script>
+<!-- tooltip -->
+<script th:src="@{/static/js/tooltip.init.js}"></script>
+
+<script th:src="@{/static/plugins/cd-top/js/cd-top.js}"></script>
+<script th:src="@{/static/js/getCookie.js}"></script>
+
+<script>
+	$(function(){
+		var box = $("#smiliesbox");
+		$("#smiliesbutton").click(function(){
+			box.show();
+			$(document).mouseup(function(e){
+				if (!box.is(e.target) && box.has(e.target).length === 0) {
+					box.hide();
+				}
+			});
+		});
+		$("span",box).click(function(){
+			$("#textarea").insert($(this).attr("data-tag"));
+
+			box.hide();
+			$(document).mouseup(function(e){
+				if (!box.is(e.target) && box.has(e.target).length === 0) {
+					box.hide();
+				}
+			});
+		});
+		$.fn.extend({
+			"insert": function(myValue){
+				var $t = $(this)[0];
+				if (document.selection) {
+					this.focus();
+					sel = document.selection.createRange();
+					sel.text = myValue;
+					this.focus()
+				} else if ($t.selectionStart || $t.selectionStart=="0") {
+					var startPos = $t.selectionStart;
+					var endPos = $t.selectionEnd;
+					var scrollTop = $t.scrollTop;
+					$t.value = $t.value.substring(0, startPos) + myValue + $t.value.substring(endPos, $t.value.length);
+					this.focus();
+					$t.selectionStart = startPos + myValue.length;
+					$t.selectionEnd = startPos + myValue.length;
+					$t.scrollTop = scrollTop
+				} else {
+					this.value += myValue;
+					this.focus();
+				}
+			}
+		})
+	});
+</script>
+<script type="text/javascript">
+
+</script>
+<script>
+
+	if (localStorage.getItem("count") === null) {
+		localStorage.setItem("count", "0");
+		$("#submit-count").text("0");
+	} else {
+		$("#submit-count").text(localStorage.getItem("count"));
+	}
+
+	function reply() {
+		$('#textarea').focus();
+	}
+
+	function saySomeThing() {
+		const someThing = $('#textarea').val().trim();
+
+		if (someThing === "") {
+			$('#textarea').focus();
+			return;
+		}
+		var $question = $("<div class=\"direct-chat-msg right\">\n" +
+			"\t<div class=\"direct-chat-infos clearfix\">\n" +
+			"\t\t<a href=\"\" class=\"direct-chat-name float-right\">路人</a>\n" +
+			"\t\t<span class=\"direct-chat-timestamp float-right mr-2\">" + (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日</span>\n" +
+			"\t</div>\n" +
+			"\t<!-- /.direct-chat-infos -->\n" +
+			"\t<img class=\"direct-chat-img border position-absolute r-2\" src=\"\/static\/img\/passers.png\" \n" +
+			"alt=\"\">\n" +
+			"\t<!-- /.direct-chat-img -->\n" +
+			"\t<div class=\"direct-chat-text float-right\"><span class=\"comm-text\">" + someThing + " <img class=\"smile-img\" \n" +
+			"src=\"\/static\/img\/tieba\/icon_smile.png\"></span>\n" +
+			"\t</div>\n" +
+			"</div>");
+
+
+		$("#chat-list").append($question);
+
+		$('#textarea').val('');
+
+		$(".loader").css("display", "flex");
+		$("#misubmit").attr("disabled", "true");
+
+		const url = "/api/chat";
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: {"text": someThing},
+			complete: function () {
+				$(".loader").css("display", "none");
+				$("#misubmit").removeAttr("disabled");
+			},
+			success: function (data) {
+				var text = data.text;
+				if (text !== undefined) {
+					var count = localStorage.getItem("count");
+					localStorage.setItem("count", (parseInt(count) + 1).toString());
+					$("#submit-count").text(localStorage.getItem("count"));
+
+					text = text.substr(2, text.length - 1);
+				}
+				var $question = $("<div class=\"direct-chat-msg\">\n" +
+					"\t<div class=\"direct-chat-infos clearfix\">\n" +
+					"\t\t<a href=\"\" class=\"direct-chat-name float-left\">OpenAI</a>\n" +
+					"\t\t<span class=\"badge badge-warning float-left ml-1\">m3</span>\n" +
+					"\t\t<span class=\"direct-chat-timestamp float-left ml-2\">"+ (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日</span>\n" +
+					"\t</div>\n" +
+					"\t<!-- /.direct-chat-infos -->\n" +
+					"\t<img class=\"direct-chat-img position-absolute border\" src=\"\/static\/img\/openai.jpg\" alt=\"\">\n" +
+					"\t<!-- /.direct-chat-img -->\n" +
+					"\t<div class=\"direct-chat-text float-left\"><span class=\"comm-text\"/>" + text + "<a class=\"badge\" href=\"javascript:reply()\">回复</a>\n" +
+					"\t</div>\n" +
+					"\t<!-- /.direct-chat-text -->\n" +
+					"</div>");
+
+				$("#chat-list").append($question);
+			}
+		});
+	}
+</script>
+
+</body>
+</html>

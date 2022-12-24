@@ -1,0 +1,207 @@
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #bbb
+}
+
+#comment-form {
+	position: relative;
+	margin: 0 0 16px;
+	padding: 10px 20px;
+	border-radius: 3px;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+	box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+.card-footer {
+	background-color: unset;
+}
+.comment-form .input-control {
+	border: 0;
+	float: left;
+	max-width: 294.8px;
+	border-bottom: 1px dashed #ddd;
+	border-radius: 0;
+}
+.comment-form .input-control:hover {
+	border-bottom: 2px dashed #ff7e7e;
+}
+.comment-form .form-control {
+	margin-bottom: 10px;
+	font-size: 13px;
+	display: block;
+	width: 33.33%;
+	height: 34px;
+	color: #313131;
+	outline: 0;
+}
+textarea#textarea {
+	font-size: 16px;
+	height: 150px;
+	padding: 10px 11px;
+	resize: none;
+	width: 100%;
+}
+.comment-form .submit {
+	font-size: 13px;
+	position: absolute;
+	right: 31px;
+	bottom: 32px;
+	display: block;
+	line-height: 24px;
+	height: 28px;
+	margin: 0 auto;
+	padding: 0 20px;
+	-webkit-transition-duration: .4s;
+	transition-duration: .4s;
+	text-align: center;
+	color: #313131;
+	border: 1px solid #dedede;
+	border-radius: 30px;
+	background-color: #f7f7f7;
+}
+.comment-form .submit2 {
+	font-size: 13px;
+	position: absolute;
+	right: 31px;
+	bottom: 70px;
+	display: block;
+	line-height: 24px;
+	height: 28px;
+	margin: 0 auto;
+	padding: 0 20px;
+	-webkit-transition-duration: .4s;
+	transition-duration: .4s;
+	text-align: center;
+	color: #aeaeae;
+	border: 1px solid #dedede;
+	border-radius: 30px;
+	background-color: #f7f7f7;
+}
+span#smiliesbutton {
+	position: absolute;
+	left: 31px;
+	bottom: 31px;
+	display: block;
+}
+#smiliesbox {
+	display:none;
+	position:absolute;
+	z-index:9999;
+	width:355px;
+	margin-top:-114px;
+	margin-left: -26px;
+	padding:5px;
+	background-color:#fff;
+	border:1px solid #bbb;
+	-moz-border-radius:11px;
+	-webkit-border-radius:11px;
+	-khtml-border-radius:11px;
+	border-radius:11px;
+	-moz-box-shadow:1px 3px 15px #bbb;
+	-webkit-box-shadow:1px 3px 15px #bbb;
+	-khtml-box-shadow:1px 3px 15px #bbb;
+	box-shadow:1px 3px 15px #bbb;
+}
+.comment-form .submit:hover, .submit:active, .submit:active:focus, .submit:focus {
+	color: #eb5055;
+	border: 1px solid #eb5055;
+	outline-style: none;
+	background-color: #fafafa;
+}
+.comment-form .submit2:hover, .submit:active, .submit:active:focus, .submit:focus {
+	color: #eb5055;
+	border: 1px solid #eb5055;
+	outline-style: none;
+	background-color: #fafafa;
+}
+img.smile-img {
+	width: 40px;
+}
+span.comm-text {
+	word-break: break-all;
+	white-space: pre-line;
+}
+@media (max-width: 700px) {
+	.comment-form .form-control {
+		width: 100%;
+		max-width: 100%;
+	}
+	.card-footer {
+		padding: 0;
+	}
+	#comment-form {
+		margin: 0;
+		border-radius: .25rem;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+}
+
+.loaders {
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	flex: 0 1 auto;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.loader {
+	display: none;
+	box-sizing: border-box;
+	flex: 0 1 auto;
+	flex-direction: column;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: 25%;
+	height: 67px;
+	align-items: center;
+	justify-content: center;
+}
+
+@-webkit-keyframes ball-beat {
+	50% {
+		opacity: 0.2;
+		-webkit-transform: scale(0.75);
+		transform: scale(0.75);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+
+@keyframes ball-beat {
+	50% {
+		opacity: 0.2;
+		-webkit-transform: scale(0.75);
+		transform: scale(0.75);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+
+.ball-beat > div {
+	background-color: #7a6484;
+	width: 15px;
+	height: 15px;
+	border-radius: 100%;
+	margin: 2px;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	display: inline-block;
+	-webkit-animation: ball-beat 0.7s 0s infinite linear;
+	animation: ball-beat 0.7s 0s infinite linear;
+}
+
+.ball-beat > div:nth-child(2n-1) {
+	-webkit-animation-delay: -0.35s !important;
+	animation-delay: -0.35s !important;
+}
