@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ChatGPT</title>
+	<title>Codex</title>
 	<link rel="shortcut icon" th:href="@{/static/img/favicon.svg}">
 	<link rel="apple-touch-icon" th:href="@{/static/img/favicon.svg}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,13 +49,13 @@
 						 with font-awesome or any other icon font library -->
 					<li class="nav-header">读万卷书</li>
 					<li class="nav-item">
-						<a class="nav-link active">
+						<a href="/" class="nav-link">
 							<i class="fa fa-comments nav-icon"></i>
 							<p>聊天</p>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="/code" class="nav-link">
+						<a class="nav-link active">
 							<i class="fas fa-file-code nav-icon"></i>
 							<p>程序</p>
 						</a>
@@ -83,7 +83,7 @@
 					</li>
 					<li class="nav-item">
 						<a href="" class="nav-link">
-							<i class="fas fa-bookmark nav-icon"></i>
+							<i class="fa fa-bookmark nav-icon"></i>
 							<p>等等</p>
 						</a>
 					</li>
@@ -110,13 +110,13 @@
 									<div class="direct-chat-msg">
 										<div class="direct-chat-infos clearfix">
 											<a href="" class="direct-chat-name float-left">OpenAI</a>
-											<span class="badge badge-warning float-left ml-1">m3</span>
+											<span class="badge badge-warning float-left ml-1">code2</span>
 											<span class="direct-chat-timestamp float-left ml-2">01月01日</span>
 										</div>
 										<!-- /.direct-chat-infos -->
 										<img class="direct-chat-img position-absolute border" src="/static/img/openai.jpg" alt="">
 										<!-- /.direct-chat-img -->
-										<div class="direct-chat-text float-left"><span class="comm-text"/>我是OpenAI机器人哦<a class="badge" href="javascript:reply()">回复</a>
+										<div class="direct-chat-text float-left"><span class="comm-text"/>我是Codex AI，使用code-davinci-002模型。<a class="badge" href="javascript:reply()">回复</a>
 										</div>
 										<!-- /.direct-chat-text -->
 									</div>
@@ -128,18 +128,31 @@
 											<span class="direct-chat-timestamp float-right mr-2">01月01日</span>
 										</div>
 										<img class="direct-chat-img border position-absolute r-2" src="/static/img/passers.png" alt="">
-										<div class="direct-chat-text float-right"><span class="comm-text">ChatGPT是什么 <img class="smile-img" src="/static/img/tieba/icon_question.png"></span>
+										<div class="direct-chat-text float-right"><span class="comm-text">输入格式是什么？能给个例子吗？<img class="smile-img" src="/static/img/tieba/icon_question.png"></span>
 										</div>
 									</div>
 
 									<div class="direct-chat-msg">
 										<div class="direct-chat-infos clearfix">
 											<a href="" class="direct-chat-name float-left">OpenAI</a>
-											<span class="badge badge-warning float-left ml-1">m3</span>
+											<span class="badge badge-warning float-left ml-1">code2</span>
 											<span class="direct-chat-timestamp float-left ml-2">01月01日</span>
 										</div>
 										<img class="direct-chat-img position-absolute border" src="/static/img/openai.jpg" alt="">
-										<div class="direct-chat-text float-left"><span class="comm-text"/>ChatGPT是一种基于自然语言处理的对话机器人技术，它可以根据用户的输入自动生成和调整回复，以模拟人类对话。它可以帮助企业快速构建智能客服机器人，以满足客户的需求。<a class="badge" href="javascript:reply()">回复</a>
+										<div class="direct-chat-text float-left"><span class="comm-text"/># Java 1.8
+											# 写个简单的jdbc连接数据库的程序<a class="badge" href="javascript:reply()">回复</a>
+										</div>
+									</div>
+
+									<div class="direct-chat-msg">
+										<div class="direct-chat-infos clearfix">
+											<a href="" class="direct-chat-name float-left">OpenAI</a>
+											<span class="badge badge-warning float-left ml-1">code2</span>
+											<span class="direct-chat-timestamp float-left ml-2">01月01日</span>
+										</div>
+										<img class="direct-chat-img position-absolute border" src="/static/img/openai.jpg" alt="">
+										<div class="direct-chat-text float-left"><span class="comm-text"/># Python 3
+											# 爬取百度图片<a class="badge" href="javascript:reply()">回复</a>
 										</div>
 									</div>
 								</div>
@@ -156,7 +169,8 @@
 									</div>
 								</div>
 								<div id="comment-form" class="comment-form" role="form">
-									<textarea name="commentText" id="textarea" class="form-control" placeholder="想对AI说点啥 0_o" required="required"></textarea>
+									<textarea name="commentText" id="textarea" class="form-control" placeholder="" required="required"># Java 1.8
+# 写个简单的jdbc连接数据库的程序</textarea>
 
 									<button onclick="saySomeThing()" class="submit" id="misubmit">提交</button>
 									<button type="button" class="submit2" id="cancelReply" style="display: none" onclick="javascript:cancelR()">取消</button>
@@ -369,7 +383,7 @@
 			"\t<img class=\"direct-chat-img border position-absolute r-2\" src=\"\/static\/img\/passers.png\" \n" +
 			"alt=\"\">\n" +
 			"\t<!-- /.direct-chat-img -->\n" +
-			"\t<div class=\"direct-chat-text float-right\"><span class=\"comm-text\">" + someThing + " <img class=\"smile-img\" \n" +
+			"\t<div class=\"direct-chat-text float-right\"><span class=\"comm-text\">" + someThing + "<img class=\"smile-img\" \n" +
 			"src=\"\/static\/img\/tieba\/icon_smile.png\"></span>\n" +
 			"\t</div>\n" +
 			"</div>");
@@ -382,7 +396,7 @@
 		$(".loader").css("display", "flex");
 		$("#misubmit").attr("disabled", "true");
 
-		const url = "/api/chat";
+		const url = "/api/code";
 		$.ajax({
 			type: "POST",
 			url: url,
@@ -397,19 +411,17 @@
 					var count = localStorage.getItem("count");
 					localStorage.setItem("count", (parseInt(count) + 1).toString());
 					$("#submit-count").text(localStorage.getItem("count"));
-
-					text = text.substr(2, text.length - 1);
 				}
 				var $question = $("<div class=\"direct-chat-msg\">\n" +
 					"\t<div class=\"direct-chat-infos clearfix\">\n" +
 					"\t\t<a href=\"\" class=\"direct-chat-name float-left\">OpenAI</a>\n" +
-					"\t\t<span class=\"badge badge-warning float-left ml-1\">m3</span>\n" +
+					"\t\t<span class=\"badge badge-warning float-left ml-1\">code2</span>\n" +
 					"\t\t<span class=\"direct-chat-timestamp float-left ml-2\">"+ (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日</span>\n" +
 					"\t</div>\n" +
 					"\t<!-- /.direct-chat-infos -->\n" +
 					"\t<img class=\"direct-chat-img position-absolute border\" src=\"\/static\/img\/openai.jpg\" alt=\"\">\n" +
 					"\t<!-- /.direct-chat-img -->\n" +
-					"\t<div class=\"direct-chat-text float-left\"><span class=\"comm-text\"/>" + text + "<a class=\"badge\" href=\"javascript:reply()\">回复</a>\n" +
+					"\t<div style=\"white-space: pre-line;\" class=\"direct-chat-text float-left\"><span class=\"comm-text\"/>" + text + "<a class=\"badge\" href=\"javascript:reply()\">回复</a>\n" +
 					"\t</div>\n" +
 					"\t<!-- /.direct-chat-text -->\n" +
 					"</div>");

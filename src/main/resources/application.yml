@@ -1,6 +1,8 @@
 openai:
   secret-key: sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  sess-key: sess-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   completions-url: https://api.openai.com/v1/completions
+  code-url: https://api.openai.com/v1/engines/code-davinci-002/completions
 
 server:
   port: 9998

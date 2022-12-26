@@ -25,8 +25,14 @@ public class OpenAiController {
     @Value("${openai.secret-key}")
     private String secretKey;
 
+    @Value("${openai.sess-key}")
+    private String sessKey;
+
     @Value("${openai.completions-url}")
     private String completionsUrl;
+
+    @Value("${openai.code-url}")
+    private String codeUrl;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -58,4 +64,54 @@ public class OpenAiController {
         return choiceOne;
     }
 
+    @GetMapping("/code")
+    public String code(Model model) {
+        model.addAttribute("text", "123");
+        return "code";
+    }
+
+    @ResponseBody
+    @PostMapping("/api/code")
+    public JSONObject codeQuery(String text) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("prompt", text);
+        param.put("max_tokens", 1000);
+        param.put("temperature", 0);
+        param.put("top_p", 1);
+        param.put("frequency_penalty", 0);
+        param.put("presence_penalty", 0);
+        param.put("best_of", 1);
+        param.put("echo", true);
+        param.put("logprobs", 0);
+        param.put("stream", false);
+        JSONObject paramJson = new JSONObject(param);
+        String body = HttpRequest.post(codeUrl)
+                .header("Authorization", "Bearer " + sessKey)
+                .body(paramJson.toJSONString())
+                .execute()
+                .body();
+//        System.out.println(body);
+        JSONObject jsonObject = JSONObject.parseObject(body);
+        JSONArray choices = (JSONArray) jsonObject.get("choices");
+        if (choices == null) {
+            //出错
+            JSONObject error = (JSONObject) jsonObject.get("error");
+            if (error != null) {
+                String message = error.getString("message");
+                if (message.startsWith("Rate limit")) {
+                    JSONObject obj = new JSONObject();
+                    obj.put("text", "Error: 达到每分钟令牌的速率限制，请稍后重试！");
+                    return obj;
+                } else {
+                    JSONObject obj = new JSONObject();
+                    obj.put("text", "Error: " + message);
+                    return obj;
+                }
+            }
+        } else {
+            JSONObject choiceOne = (JSONObject) choices.get(0);
+            return choiceOne;
+        }
+        return (JSONObject) new JSONObject().put("text","Error: 系统错误！");
+    }
 }
