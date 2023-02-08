@@ -60,8 +60,26 @@ public class OpenAiController {
 //        System.out.println(body);
         JSONObject jsonObject = JSONObject.parseObject(body);
         JSONArray choices = (JSONArray) jsonObject.get("choices");
-        JSONObject choiceOne = (JSONObject) choices.get(0);
-        return choiceOne;
+        if (choices == null) {
+            //出错
+            JSONObject error = (JSONObject) jsonObject.get("error");
+            if (error != null) {
+                String message = error.getString("type");
+                if (message.equals("insufficient_quota")) {
+                    JSONObject obj = new JSONObject();
+                    obj.put("text", "  Error: 您超出了当前配额，请检查计划和账单！");
+                    return obj;
+                } else {
+                    JSONObject obj = new JSONObject();
+                    obj.put("text", "  Error: " + message);
+                    return obj;
+                }
+            }
+        } else {
+            JSONObject choiceOne = (JSONObject) choices.get(0);
+            return choiceOne;
+        }
+        return (JSONObject) new JSONObject().put("text","  Error: 系统错误！");
     }
 
     @GetMapping("/code")
