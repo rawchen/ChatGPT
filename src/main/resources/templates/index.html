@@ -10,12 +10,15 @@
 
 	<!-- Theme style -->
 	<link rel="stylesheet" th:href="@{/static/css/adminlte.min.css}">
+	<link rel="stylesheet" th:href="@{/static/plugins/prism/css/prism.css}">
 	<link rel="stylesheet" th:href="@{/static/css/mystyle.css}">
 	<link rel="stylesheet" th:href="@{/static/plugins/cd-top/css/cd-top.css}">
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" th:href="@{/static/plugins/fontawesome-free/css/all.min.css}">
 	<link rel="stylesheet" th:href="@{/static/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
+
+	<script async defer data-website-id="84d82e9b-fa02-431a-a3d7-73f7b04b3d3d" src="https://umami.rawchen.com/umami.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -110,13 +113,13 @@
 									<div class="direct-chat-msg">
 										<div class="direct-chat-infos clearfix">
 											<a href="" class="direct-chat-name float-left">OpenAI</a>
-											<span class="badge badge-warning float-left ml-1">m3</span>
+											<span class="badge badge-warning float-left ml-1">3.5</span>
 											<span class="direct-chat-timestamp float-left ml-2">01月01日</span>
 										</div>
 										<!-- /.direct-chat-infos -->
 										<img class="direct-chat-img position-absolute border" src="/static/img/openai.jpg" alt="">
 										<!-- /.direct-chat-img -->
-										<div class="direct-chat-text float-left"><span class="comm-text"/>我是ChatGPT，使用text-davinci-003模型。<a class="badge" href="javascript:reply()">回复</a>
+										<div class="direct-chat-text float-left"><span class="comm-text"/>我是ChatGPT，使用gpt-3.5-turbo模型，当前不支持上下文关联。<a class="badge" href="javascript:reply()">回复</a>
 										</div>
 										<!-- /.direct-chat-text -->
 									</div>
@@ -135,11 +138,11 @@
 									<div class="direct-chat-msg">
 										<div class="direct-chat-infos clearfix">
 											<a href="" class="direct-chat-name float-left">OpenAI</a>
-											<span class="badge badge-warning float-left ml-1">m3</span>
+											<span class="badge badge-warning float-left ml-1">3.5</span>
 											<span class="direct-chat-timestamp float-left ml-2">01月01日</span>
 										</div>
 										<img class="direct-chat-img position-absolute border" src="/static/img/openai.jpg" alt="">
-										<div class="direct-chat-text float-left"><span class="comm-text"/>ChatGPT是一种基于自然语言处理的对话机器人技术，它可以根据用户的输入自动生成和调整回复，以模拟人类对话。它可以帮助企业快速构建智能客服机器人，以满足客户的需求。<a class="badge" href="javascript:reply()">回复</a>
+										<div class="direct-chat-text float-left"><span class="comm-text"/>ChatGPT是一种基于自然语言处理的对话机器人技术，它可以根据用户的输入自动生成和调整回复，以模拟人类对话。<a class="badge" href="javascript:reply()">回复</a>
 										</div>
 									</div>
 								</div>
@@ -209,7 +212,7 @@
 								<img class="img-circle elevation-2" src="/static/img/openai.jpg" alt="Avatar">
 							</div>
 							<div class="card-body pt-5">
-								<p class="text-muted" style="text-align: center">CHAT
+								<p class="text-muted" style="text-align: center">ChatGPT
 								</p>
 
 								<ul class="list-group list-group-unbordered">
@@ -222,7 +225,7 @@
 
 									<li class="list-group-item">
 										<strong><i class="fas fa-map-marker-alt mr-2"></i>位置</strong>
-										<div class="text-muted">Singapore</div>
+										<div class="text-muted">China</div>
 									</li>
 
 									<li class="list-group-item">
@@ -291,6 +294,18 @@
 <script th:src="@{/static/plugins/cd-top/js/cd-top.js}"></script>
 <script th:src="@{/static/js/getCookie.js}"></script>
 
+<script th:src="@{/static/plugins/editor.md/lib/marked.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/lib/prettify.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/lib/raphael.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/lib/underscore.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/lib/flowchart.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/lib/jquery.flowchart.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/lib/sequence-diagram.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/js/editormd.js}"></script>
+<script th:src="@{/static/plugins/prism/js/prism.js}"></script>
+
+
+
 <script>
 	$(function(){
 		var box = $("#smiliesbox");
@@ -341,6 +356,7 @@
 
 </script>
 <script>
+	$('#textarea').focus();
 
 	if (localStorage.getItem("count") === null) {
 		localStorage.setItem("count", "0");
@@ -378,7 +394,7 @@
 		$("#chat-list").append($question);
 
 		$('#textarea').val('');
-
+		$('#textarea').attr("disabled", "true");
 		$(".loader").css("display", "flex");
 		$("#misubmit").attr("disabled", "true");
 
@@ -390,34 +406,66 @@
 			complete: function () {
 				$(".loader").css("display", "none");
 				$("#misubmit").removeAttr("disabled");
+				$('#textarea').removeAttr("disabled");
+				$('#textarea').val('');
+				$('#textarea').focus();
 			},
 			success: function (data) {
+				console.log(data)
 				var text = data.text;
 				if (text !== undefined) {
 					var count = localStorage.getItem("count");
 					localStorage.setItem("count", (parseInt(count) + 1).toString());
 					$("#submit-count").text(localStorage.getItem("count"));
 
-					text = text.substr(2, text.length - 1);
+					// text = text.substr(2, text.length - 1);
 				}
+				const randomNum = Math.floor(Math.random() * 900000 + 100000);
+
 				var $question = $("<div class=\"direct-chat-msg\">\n" +
 					"\t<div class=\"direct-chat-infos clearfix\">\n" +
 					"\t\t<a href=\"\" class=\"direct-chat-name float-left\">OpenAI</a>\n" +
-					"\t\t<span class=\"badge badge-warning float-left ml-1\">m3</span>\n" +
+					"\t\t<span class=\"badge badge-warning float-left ml-1\">3.5</span>\n" +
 					"\t\t<span class=\"direct-chat-timestamp float-left ml-2\">"+ (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日</span>\n" +
 					"\t</div>\n" +
 					"\t<!-- /.direct-chat-infos -->\n" +
 					"\t<img class=\"direct-chat-img position-absolute border\" src=\"\/static\/img\/openai.jpg\" alt=\"\">\n" +
 					"\t<!-- /.direct-chat-img -->\n" +
-					"\t<div class=\"direct-chat-text float-left\"><span class=\"comm-text\"/>" + text + "<a class=\"badge\" href=\"javascript:reply()\">回复</a>\n" +
+					"\t<div class=\"direct-chat-text float-left\"><span class=\"comm-text\" id=\"comm-text-" + randomNum + "\"/>" + "<a class=\"badge\" href=\"javascript:reply()\">回复</a>\n" +
 					"\t</div>\n" +
 					"\t<!-- /.direct-chat-text -->\n" +
 					"</div>");
 
 				$("#chat-list").append($question);
+
+
+				//markDown转HTMl的方法
+				//先对容器初始化，在需要展示的容器中创建textarea隐藏标签，
+				$("#comm-text-" + randomNum).html('<textarea id="appendTest"></textarea>');
+				// var content=$("#mdtext").val();//获取需要转换的内容;//获取需要转换的内容
+
+				$("#appendTest").val(text);//将需要转换的内容加到转换后展示容器的textarea隐藏标签中
+
+				//转换开始,第一个参数是上面的div的id
+				editormd.markdownToHTML("comm-text-" + randomNum, {
+					htmlDecode: "style,script,iframe", //可以过滤标签解码
+					emoji: true,
+					taskList:true,
+					tex: false,
+					flowChart:true,
+					sequenceDiagram:true
+				});
 			}
 		});
 	}
+	Prism.highlightAll();
+	$('#textarea').bind('keypress',function(event) {
+		if (event.shiftKey && event.keyCode === 13) {
+			// $('#textarea').val($("#textarea").val() + "\n")
+		} else if (!event.shiftKey && event.keyCode === 13) {
+			saySomeThing();
+		}
+	});
 </script>
 
 </body>

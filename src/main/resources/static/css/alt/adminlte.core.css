@@ -9698,7 +9698,7 @@ body,
 }
 
 .wrapper .content-wrapper {
-  min-height: calc(100vh - calc(3.5rem + 1px) - calc(3.5rem + 1px));
+  min-height: calc(100vh - calc(6.5rem + 1px) - calc(3.5rem + 1px));
 }
 
 .layout-boxed .wrapper {

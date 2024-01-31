@@ -1,7 +1,7 @@
 openai:
   secret-key: sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   sess-key: sess-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  completions-url: https://api.openai.com/v1/completions
+  completions-url: https://api.baizhi.ai/v1/chat/completions
   code-url: https://api.openai.com/v1/engines/code-davinci-002/completions
 
 server:
@@ -30,3 +30,7 @@ spring:
       additional-paths: src/main/java
   mvc:
     static-path-pattern: static/**
+
+logging:
+  level:
+    org.apache.coyote.http11.Http11Processor: warn

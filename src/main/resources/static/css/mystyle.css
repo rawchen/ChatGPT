@@ -123,7 +123,7 @@ img.smile-img {
 }
 span.comm-text {
 	word-break: break-all;
-	white-space: pre-line;
+	/*white-space: pre-line;*/
 }
 @media (max-width: 700px) {
 	.comment-form .form-control {
@@ -204,4 +204,55 @@ span.comm-text {
 .ball-beat > div:nth-child(2n-1) {
 	-webkit-animation-delay: -0.35s !important;
 	animation-delay: -0.35s !important;
+}
+
+.linenums li[class*="L"] {
+	border-left: 1px solid #999999;
+	padding-left: 10px;
+}
+.linenums {
+	/*padding-left: 29px;*/
+	/*margin-bottom: 5px;*/
+}
+
+pre ol {
+	margin-top: revert;
+}
+
+pre ol li::marker {
+	margin-top: revert;
+	content: counter(list-item) "  ";
+}
+
+pre {
+	/*font-size: 1em;*/
+	border-radius: 15px;
+	margin: 10px 0px;
+	color: #eaeaea;
+	background-color: #606677;
+}
+
+pre.prettyprint.linenums.prettyprinted {
+	box-shadow: 0px 0px 3px rgba(0,0,0,.35);
+	-webkit-box-shadow: 0px 0px 3px rgba(0,0,0,.35);
+}
+
+code {
+	font-family: Consolas,'Microsoft YaHei', Monaco, Andale Mono, Ubuntu Mono, monospace;
+	font-size: 16px;
+	color: black;
+	padding: 1px 7px 1px 7px;
+	margin: 2px 4px;
+	border-radius: 5px;
+	background: linear-gradient(to right, #ffc3aa, #ff8d8d);
+	color: #000;
+	-webkit-transition-duration: .15s;
+	transition-duration: .15s;
+}
+
+pre code {
+	padding: 0px;
+	margin: 0px;
+	background: none;
+
 }
