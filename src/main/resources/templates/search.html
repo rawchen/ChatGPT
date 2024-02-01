@@ -3,19 +3,22 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Codex</title>
+	<title>ChatGPT</title>
 	<link rel="shortcut icon" th:href="@{/static/img/favicon.svg}">
 	<link rel="apple-touch-icon" th:href="@{/static/img/favicon.svg}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Theme style -->
 	<link rel="stylesheet" th:href="@{/static/css/adminlte.min.css}">
+	<link rel="stylesheet" th:href="@{/static/plugins/prism/css/prism.css}">
 	<link rel="stylesheet" th:href="@{/static/css/mystyle.css}">
 	<link rel="stylesheet" th:href="@{/static/plugins/cd-top/css/cd-top.css}">
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" th:href="@{/static/plugins/fontawesome-free/css/all.min.css}">
 	<link rel="stylesheet" th:href="@{/static/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
+
+	<script async defer data-website-id="84d82e9b-fa02-431a-a3d7-73f7b04b3d3d" src="https://umami.rawchen.com/umami.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -51,40 +54,40 @@
 					<li class="nav-item">
 						<a href="/" class="nav-link">
 							<i class="fa fa-comments nav-icon"></i>
-							<p>聊天</p>
+							<p>Chat</p>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link active">
 							<i class="fas fa-file-code nav-icon"></i>
-							<p>程序</p>
+							<p>Search</p>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="" class="nav-link">
+						<a href="/images" class="nav-link">
 							<i class="fa fa-tags nav-icon"></i>
-							<p>等等</p>
+							<p>Images</p>
 						</a>
 					</li>
 
 					<li class="nav-header">行万里路</li>
 					<li class="nav-item">
-						<a href="" class="nav-link">
+						<a class="nav-link">
 							<i class="fa fa-archive nav-icon"></i>
 							<p>等等</p>
 						</a>
 					</li>
 					<li class="nav-header">点滴记录</li>
 					<li class="nav-item">
-						<a class="nav-link">
+						<a href="https://rawchen.com" class="nav-link">
 							<i class="fa fa-bookmark nav-icon"></i>
-							<p>等等</p>
+							<p>博客</p>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="" class="nav-link">
-							<i class="fa fa-bookmark nav-icon"></i>
-							<p>等等</p>
+						<a href="https://umami.rawchen.com/share/4" class="nav-link">
+							<i class="fas fa-bookmark nav-icon"></i>
+							<p>访客</p>
 						</a>
 					</li>
 				</ul>
@@ -110,13 +113,13 @@
 									<div class="direct-chat-msg">
 										<div class="direct-chat-infos clearfix">
 											<a href="" class="direct-chat-name float-left">OpenAI</a>
-											<span class="badge badge-warning float-left ml-1">code2</span>
+											<span class="badge badge-warning float-left ml-1">3.5</span>
 											<span class="direct-chat-timestamp float-left ml-2">01月01日</span>
 										</div>
 										<!-- /.direct-chat-infos -->
 										<img class="direct-chat-img position-absolute border" src="/static/img/openai.jpg" alt="">
 										<!-- /.direct-chat-img -->
-										<div class="direct-chat-text float-left"><span class="comm-text"/>我是Codex AI，使用code-davinci-002模型。<a class="badge" href="javascript:reply()">回复</a>
+										<div class="direct-chat-text float-left"><span class="comm-text" style="display: inline-block;">我是一款强大的AI搜索引擎。有更高的准确性，支持实时搜索，包括互联网内容、新闻天气以及图片视频等，还能优化数字计算和数学问题。<a class="badge" href="javascript:reply()">回复</a></span>
 										</div>
 										<!-- /.direct-chat-text -->
 									</div>
@@ -128,31 +131,20 @@
 											<span class="direct-chat-timestamp float-right mr-2">01月01日</span>
 										</div>
 										<img class="direct-chat-img border position-absolute r-2" src="/static/img/passers.png" alt="">
-										<div class="direct-chat-text float-right"><span class="comm-text">输入格式是什么？能给个例子吗？<img class="smile-img" src="/static/img/tieba/icon_question.png"></span>
+										<div class="direct-chat-text float-right"><span class="comm-text" style="display: inline-block;">我能问些什么 <img class="smile-img" src="/static/img/tieba/icon_question.png"></span>
 										</div>
 									</div>
 
 									<div class="direct-chat-msg">
 										<div class="direct-chat-infos clearfix">
 											<a href="" class="direct-chat-name float-left">OpenAI</a>
-											<span class="badge badge-warning float-left ml-1">code2</span>
+											<span class="badge badge-warning float-left ml-1">3.5</span>
 											<span class="direct-chat-timestamp float-left ml-2">01月01日</span>
 										</div>
 										<img class="direct-chat-img position-absolute border" src="/static/img/openai.jpg" alt="">
-										<div class="direct-chat-text float-left"><span class="comm-text"/># Java 1.8
-											# 写个简单的jdbc连接数据库的程序<a class="badge" href="javascript:reply()">回复</a>
-										</div>
-									</div>
-
-									<div class="direct-chat-msg">
-										<div class="direct-chat-infos clearfix">
-											<a href="" class="direct-chat-name float-left">OpenAI</a>
-											<span class="badge badge-warning float-left ml-1">code2</span>
-											<span class="direct-chat-timestamp float-left ml-2">01月01日</span>
-										</div>
-										<img class="direct-chat-img position-absolute border" src="/static/img/openai.jpg" alt="">
-										<div class="direct-chat-text float-left"><span class="comm-text"/># Python 3
-											# 爬取百度图片<a class="badge" href="javascript:reply()">回复</a>
+										<div class="direct-chat-text float-left">例如：
+											告诉我更多关于Apple Vision Pro的资讯。或者：
+											今天是什么时间，今天中国北京的天气怎么样，要不要带伞。<a class="badge" href="javascript:reply()">回复</a>
 										</div>
 									</div>
 								</div>
@@ -169,10 +161,9 @@
 									</div>
 								</div>
 								<div id="comment-form" class="comment-form" role="form">
-									<textarea name="commentText" id="textarea" class="form-control" placeholder="" required="required"># Java 1.8
-# 写个简单的jdbc连接数据库的程序</textarea>
+									<textarea name="commentText" id="textarea" class="form-control" placeholder="想对AI说点啥 0_o" required="required"></textarea>
 
-									<button onclick="saySomeThing()" class="submit" id="misubmit">提交</button>
+									<button onclick="showModal()" class="submit" id="misubmit">提交</button>
 									<button type="button" class="submit2" id="cancelReply" style="display: none" onclick="javascript:cancelR()">取消</button>
 									<div id="smiliesbox">
 										<span style="cursor:pointer;" data-tag=" :mrgreen: " title=":mrgreen:"><img style="margin:2px;max-width:30px;display:inline-block;" src="/static/img/tieba/icon_mrgreen.png" alt="icon_mrgreen.png"></span>
@@ -280,6 +271,33 @@
 		</section>
 		<!-- /.content -->
 	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+<!--				<div class="modal-header">-->
+<!--					<h5 class="modal-title" id="confirmModalLabel">请输入密码确认</h5>-->
+<!--					<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--						<span aria-hidden="true">&times;</span>-->
+<!--					</button>-->
+<!--				</div>-->
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="password">密码</label>
+							<input type="password" class="form-control" id="password" placeholder="输入密码">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+					<button type="button" id="enterButton" class="btn btn-primary">确认</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- /.content-wrapper -->
 	<footer class="main-footer">
 		<a href="#0" class="cd-top">Top</a>
@@ -304,6 +322,18 @@
 
 <script th:src="@{/static/plugins/cd-top/js/cd-top.js}"></script>
 <script th:src="@{/static/js/getCookie.js}"></script>
+
+<script th:src="@{/static/plugins/editor.md/lib/marked.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/lib/prettify.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/lib/raphael.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/lib/underscore.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/lib/flowchart.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/lib/jquery.flowchart.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/lib/sequence-diagram.min.js}"></script>
+<script th:src="@{/static/plugins/editor.md/js/editormd.js}"></script>
+<script th:src="@{/static/plugins/prism/js/prism.js}"></script>
+
+
 
 <script>
 	$(function(){
@@ -355,6 +385,29 @@
 
 </script>
 <script>
+	let pwd = "";
+	$(document).ready(function() {
+		$("#enterButton").click(function() {
+			$('#confirmModal').modal('hide');
+			pwd = $('#password').val();
+			saySomeThing();
+		});
+	});
+
+	$('#confirmModal').on('shown.bs.modal', function () {
+		$('#password').focus();
+		$('#confirmModal').on('keypress',function(e) {
+			if (e.keyCode === 13) {
+				e.preventDefault();
+				$('#enterButton').click();
+			}
+		});
+	});
+	$('#confirmModal').on('hidden.bs.modal', function () {
+		$('#confirmModal').off('keypress');
+	});
+
+	$('#textarea').focus();
 
 	if (localStorage.getItem("count") === null) {
 		localStorage.setItem("count", "0");
@@ -367,69 +420,111 @@
 		$('#textarea').focus();
 	}
 
+	function showModal() {
+		const someThing = $('#textarea').val().trim();
+		if (someThing === "") {
+			$('#textarea').focus();
+			return;
+		}
+		$('#confirmModal').modal('show');
+	}
+
 	function saySomeThing() {
 		const someThing = $('#textarea').val().trim();
-
 		if (someThing === "") {
 			$('#textarea').focus();
 			return;
 		}
 		var $question = $("<div class=\"direct-chat-msg right\">\n" +
-			"\t<div class=\"direct-chat-infos clearfix\">\n" +
-			"\t\t<a href=\"\" class=\"direct-chat-name float-right\">路人</a>\n" +
-			"\t\t<span class=\"direct-chat-timestamp float-right mr-2\">" + (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日</span>\n" +
-			"\t</div>\n" +
-			"\t<!-- /.direct-chat-infos -->\n" +
-			"\t<img class=\"direct-chat-img border position-absolute r-2\" src=\"\/static\/img\/passers.png\" \n" +
-			"alt=\"\">\n" +
-			"\t<!-- /.direct-chat-img -->\n" +
-			"\t<div class=\"direct-chat-text float-right\"><span class=\"comm-text\">" + someThing + "<img class=\"smile-img\" \n" +
-			"src=\"\/static\/img\/tieba\/icon_smile.png\"></span>\n" +
-			"\t</div>\n" +
-			"</div>");
+				"\t<div class=\"direct-chat-infos clearfix\">\n" +
+				"\t\t<a href=\"\" class=\"direct-chat-name float-right\">路人</a>\n" +
+				"\t\t<span class=\"direct-chat-timestamp float-right mr-2\">" + (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日</span>\n" +
+				"\t</div>\n" +
+				"\t<!-- /.direct-chat-infos -->\n" +
+				"\t<img class=\"direct-chat-img border position-absolute r-2\" src=\"\/static\/img\/passers.png\" \n" +
+				"alt=\"\">\n" +
+				"\t<!-- /.direct-chat-img -->\n" +
+				"\t<div class=\"direct-chat-text float-right\"><span class=\"comm-text\" style=\"display: inline-block;\">" + someThing + " <img class=\"smile-img\" \n" +
+				"src=\"\/static\/img\/tieba\/icon_smile.png\"></span>\n" +
+				"\t</div>\n" +
+				"</div>");
 
 
 		$("#chat-list").append($question);
 
 		$('#textarea').val('');
-
+		$('#textarea').attr("disabled", "true");
 		$(".loader").css("display", "flex");
 		$("#misubmit").attr("disabled", "true");
 
-		const url = "/api/code";
+		const url = "/api/search";
 		$.ajax({
 			type: "POST",
 			url: url,
-			data: {"text": someThing},
+			data: {"text": someThing, "password": pwd},
 			complete: function () {
 				$(".loader").css("display", "none");
 				$("#misubmit").removeAttr("disabled");
+				$('#textarea').removeAttr("disabled");
+				$('#textarea').val('');
+				$('#textarea').focus();
 			},
 			success: function (data) {
+				console.log(data)
 				var text = data.text;
 				if (text !== undefined) {
 					var count = localStorage.getItem("count");
 					localStorage.setItem("count", (parseInt(count) + 1).toString());
 					$("#submit-count").text(localStorage.getItem("count"));
+
+					// text = text.substr(2, text.length - 1);
 				}
+				const randomNum = Math.floor(Math.random() * 900000 + 100000);
+
 				var $question = $("<div class=\"direct-chat-msg\">\n" +
-					"\t<div class=\"direct-chat-infos clearfix\">\n" +
-					"\t\t<a href=\"\" class=\"direct-chat-name float-left\">OpenAI</a>\n" +
-					"\t\t<span class=\"badge badge-warning float-left ml-1\">code2</span>\n" +
-					"\t\t<span class=\"direct-chat-timestamp float-left ml-2\">"+ (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日</span>\n" +
-					"\t</div>\n" +
-					"\t<!-- /.direct-chat-infos -->\n" +
-					"\t<img class=\"direct-chat-img position-absolute border\" src=\"\/static\/img\/openai.jpg\" alt=\"\">\n" +
-					"\t<!-- /.direct-chat-img -->\n" +
-					"\t<div style=\"white-space: pre-line; word-break: break-word;\" class=\"direct-chat-text float-left\"><span class=\"comm-text\"/>" + text + "<a class=\"badge\" href=\"javascript:reply()\">回复</a>\n" +
-					"\t</div>\n" +
-					"\t<!-- /.direct-chat-text -->\n" +
-					"</div>");
+						"\t<div class=\"direct-chat-infos clearfix\">\n" +
+						"\t\t<a href=\"\" class=\"direct-chat-name float-left\">OpenAI</a>\n" +
+						"\t\t<span class=\"badge badge-warning float-left ml-1\">3.5</span>\n" +
+						"\t\t<span class=\"direct-chat-timestamp float-left ml-2\">"+ (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日</span>\n" +
+						"\t</div>\n" +
+						"\t<!-- /.direct-chat-infos -->\n" +
+						"\t<img class=\"direct-chat-img position-absolute border\" src=\"\/static\/img\/openai.jpg\" alt=\"\">\n" +
+						"\t<!-- /.direct-chat-img -->\n" +
+						"\t<div class=\"direct-chat-text float-left\"><span class=\"comm-text\" id=\"comm-text-" + randomNum + "\"/>" + "<a class=\"badge\" href=\"javascript:reply()\">回复</a>\n" +
+						"\t</div>\n" +
+						"\t<!-- /.direct-chat-text -->\n" +
+						"</div>");
 
 				$("#chat-list").append($question);
+
+
+				//markDown转HTMl的方法
+				//先对容器初始化，在需要展示的容器中创建textarea隐藏标签，
+				$("#comm-text-" + randomNum).html('<textarea id="appendTest"></textarea>');
+				// var content=$("#mdtext").val();//获取需要转换的内容;//获取需要转换的内容
+
+				$("#appendTest").val(text);//将需要转换的内容加到转换后展示容器的textarea隐藏标签中
+
+				//转换开始,第一个参数是上面的div的id
+				editormd.markdownToHTML("comm-text-" + randomNum, {
+					htmlDecode: "style,script,iframe", //可以过滤标签解码
+					emoji: true,
+					taskList:true,
+					tex: false,
+					flowChart:true,
+					sequenceDiagram:true
+				});
 			}
 		});
 	}
+	Prism.highlightAll();
+	$('#textarea').bind('keypress',function(event) {
+		if (event.shiftKey && event.keyCode === 13) {
+			// $('#textarea').val($("#textarea").val() + "\n")
+		} else if (!event.shiftKey && event.keyCode === 13) {
+			showModal();
+		}
+	});
 </script>
 
 </body>

@@ -119,9 +119,11 @@ span#smiliesbutton {
 	background-color: #fafafa;
 }
 img.smile-img {
-	width: 40px;
+	width: 30px;
 }
 span.comm-text {
+	display: grid;
+	width: 100%;
 	word-break: break-all;
 	/*white-space: pre-line;*/
 }
@@ -255,4 +257,12 @@ pre code {
 	margin: 0px;
 	background: none;
 
+}
+
+.direct-chat-text {
+	padding: 15px 10px;
+}
+
+.wrapper .content-wrapper {
+	min-height: calc(100vh - calc(6.5rem + 1px) - calc(3.5rem + 1px));
 }

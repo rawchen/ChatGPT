@@ -1,8 +1,8 @@
 openai:
   secret-key: sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  sess-key: sess-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  completions-url: https://api.baizhi.ai/v1/chat/completions
-  code-url: https://api.openai.com/v1/engines/code-davinci-002/completions
+  chat-url: https://api.baizhi.ai/v1/chat/completions
+  search-url: https://api.baizhi.ai/v1/search/completions
+  images-url: https://api.baizhi.ai/v1/images/generations
 
 server:
   port: 9998
