@@ -1,5 +1,7 @@
 package com.rawchen.chatgpt.util;
 
+import cn.hutool.core.util.StrUtil;
+
 /**
  * @author RawChen
  * @date 2022-12-24
@@ -76,5 +78,13 @@ public class StringUtil {
 	public static boolean isWinOs() {
 		String os = System.getProperty("os.name");
 		return os.toLowerCase().startsWith("win");
+	}
+
+	public static String wrapperImg(String url) {
+		if (StrUtil.isNotEmpty(url)) {
+			return "![](" + url + ")";
+		} else {
+			return url;
+		}
 	}
 }

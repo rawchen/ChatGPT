@@ -44,3 +44,5 @@ OpenAI的secret-key获取通过第三方: [https://beta.theb.ai](https://beta.th
 ![Search](https://rawchen.com/temp/chatgpt01.png)
 
 ![Chat](https://rawchen.com/temp/chatgpt02.png)
+
+![Images](https://rawchen.com/temp/chatgpt03.png)

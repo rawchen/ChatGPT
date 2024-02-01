@@ -58,13 +58,13 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active">
+						<a href="/search" class="nav-link">
 							<i class="fas fa-file-code nav-icon"></i>
 							<p>Search</p>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="/images" class="nav-link">
+						<a class="nav-link active">
 							<i class="fa fa-tags nav-icon"></i>
 							<p>Images</p>
 						</a>
@@ -119,7 +119,7 @@
 										<!-- /.direct-chat-infos -->
 										<img class="direct-chat-img position-absolute border" src="/static/img/openai.jpg" alt="">
 										<!-- /.direct-chat-img -->
-										<div class="direct-chat-text float-left"><span class="comm-text" style="display: inline-block;">我是一款强大的AI搜索引擎。有更高的准确性，支持实时搜索，包括互联网内容、新闻天气以及图片视频等，还能优化数字计算和数学问题。<a class="badge" href="javascript:reply()">回复</a></span>
+										<div class="direct-chat-text float-left"><span class="comm-text" style="display: inline-block;">我是一款强大的图像生成引擎，使用DALL·E 2模型。<a class="badge" href="javascript:reply()">回复</a></span>
 										</div>
 										<!-- /.direct-chat-text -->
 									</div>
@@ -131,7 +131,7 @@
 											<span class="direct-chat-timestamp float-right mr-2">01月01日</span>
 										</div>
 										<img class="direct-chat-img border position-absolute r-2" src="/static/img/passers.png" alt="">
-										<div class="direct-chat-text float-right"><span class="comm-text" style="display: inline-block;">我能问些什么 <img class="smile-img" src="/static/img/tieba/icon_question.png"></span>
+										<div class="direct-chat-text float-right"><span class="comm-text" style="display: inline-block;">我该怎么描述呢 <img class="smile-img" src="/static/img/tieba/icon_question.png"></span>
 										</div>
 									</div>
 
@@ -142,9 +142,7 @@
 											<span class="direct-chat-timestamp float-left ml-2">01月01日</span>
 										</div>
 										<img class="direct-chat-img position-absolute border" src="/static/img/openai.jpg" alt="">
-										<div class="direct-chat-text float-left">例如：
-											告诉我更多关于Apple Vision Pro的资讯。或者：
-											今天是什么时间，今天中国北京的天气怎么样，要不要带伞。<a class="badge" href="javascript:reply()">回复</a>
+										<div class="direct-chat-text float-left">例如：一只流浪熊在一座雪山旁边的针叶林里的花丛上拿着手机拍照片，对面是一个湖，被雪山包围，湖水呈现浅蓝色可以见到底部的石头。<a class="badge" href="javascript:reply()">回复</a>
 										</div>
 									</div>
 								</div>
@@ -214,7 +212,7 @@
 								<img class="img-circle elevation-2" src="/static/img/openai.jpg" alt="Avatar">
 							</div>
 							<div class="card-body pt-5">
-								<p class="text-muted" style="text-align: center">Search
+								<p class="text-muted" style="text-align: center">Images
 								</p>
 
 								<ul class="list-group list-group-unbordered">
@@ -457,7 +455,7 @@
 		$(".loader").css("display", "flex");
 		$("#misubmit").attr("disabled", "true");
 
-		const url = "/api/search";
+		const url = "/api/images";
 		$.ajax({
 			type: "POST",
 			url: url,

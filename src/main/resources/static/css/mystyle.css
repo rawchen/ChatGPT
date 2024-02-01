@@ -127,6 +127,11 @@ span.comm-text {
 	word-break: break-all;
 	/*white-space: pre-line;*/
 }
+
+span.comm-text img {
+	border-radius: 10px;
+}
+
 @media (max-width: 700px) {
 	.comment-form .form-control {
 		width: 100%;

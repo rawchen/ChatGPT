@@ -4,8 +4,10 @@ import cn.hutool.http.HttpRequest;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.rawchen.chatgpt.entity.Message;
+import com.rawchen.chatgpt.entity.ModelParam;
 import com.rawchen.chatgpt.entity.R;
 import com.rawchen.chatgpt.util.FileUtil;
+import com.rawchen.chatgpt.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -49,6 +51,11 @@ public class OpenAiController {
     @GetMapping("/search")
     public String search() {
         return "search";
+    }
+
+    @GetMapping("/images")
+    public String images() {
+        return "images";
     }
 
     @ResponseBody
@@ -115,6 +122,39 @@ public class OpenAiController {
             JSONObject choiceOne = choices.getJSONObject(0);
             JSONObject messageObject = choiceOne.getJSONObject("message");
             return new R().setText(messageObject.getString("content"));
+        }
+        return new R().setText("Error: 系统错误！");
+    }
+
+    @ResponseBody
+    @PostMapping("/api/images")
+    public R images(String text, String password) throws IOException {
+        if (!FileUtil.getFileContent("password.txt").equals(password)) {
+            return new R().setText("Error: " + "认证失败！");
+        }
+        Map<String, Object> param = new HashMap<>();
+        ModelParam modelParam = new ModelParam().setN(1).setSize("512x512");
+        param.put("model", "dall-e-2");
+        param.put("model_params", modelParam);
+        param.put("prompt", text);
+        JSONObject paramJson = new JSONObject(param);
+        String body = HttpRequest.post(imagesUrl)
+                .header("Authorization", "Bearer " + secretKey)
+                .body(paramJson.toJSONString())
+                .execute()
+                .body();
+        log.info("Images Result: {}", body);
+        JSONObject jsonObject = JSONObject.parseObject(body);
+        JSONArray data = jsonObject.getJSONArray("data");
+        if (data == null || jsonObject.getJSONObject("error") != null) {
+            JSONObject error = jsonObject.getJSONObject("error");
+            if (error != null) {
+                String msg = error.getString("message");
+                return new R().setText("Error: " + msg);
+            }
+        } else {
+            JSONObject dataOne = data.getJSONObject(0);
+            return new R().setText(StringUtil.wrapperImg(dataOne.getString("url")));
         }
         return new R().setText("Error: 系统错误！");
     }
