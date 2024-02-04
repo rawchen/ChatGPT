@@ -21,13 +21,13 @@
         color:#eaeaea
     }
     .tag {
-        color:#f92672
+        color:#F0BE5A
     }
     .atn {
-        color:#606
+        color:#BABABA
     }
     .atv {
-        color:#080
+        color:#9DC450
     }
     .dec,.var {
         color:#ae81ff
@@ -60,13 +60,13 @@
         color: #eaeaea
     }
     .tag {
-        color:#f92672;
+        color:#F0BE5A;
         font-weight:700
     }
     .atn {
-        color:#404
+        color:#BABABA
     }
     .atv {
-        color:#060
+        color:#9DC450
     }
 }
