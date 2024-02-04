@@ -11,6 +11,7 @@
 	<!-- Theme style -->
 	<link rel="stylesheet" th:href="@{/static/css/adminlte.min.css}">
 	<link rel="stylesheet" th:href="@{/static/plugins/prism/css/prism.css}">
+	<link rel="stylesheet" th:href="@{/static/css/prettify.css}">
 	<link rel="stylesheet" th:href="@{/static/css/mystyle.css}">
 	<link rel="stylesheet" th:href="@{/static/plugins/cd-top/css/cd-top.css}">
 
@@ -283,7 +284,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script th:src="@{/static/js/jquery.min.js}"></script>
+<script th:src="@{/static/plugins/jquery/jquery.min.js}"></script>
 <!-- Bootstrap 4 -->
 <script th:src="@{/static/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
@@ -291,6 +292,7 @@
 <!-- tooltip -->
 <script th:src="@{/static/js/tooltip.init.js}"></script>
 
+<!--<script th:src="@{/static/plugins/prism/js/prism.js}"></script>-->
 <script th:src="@{/static/plugins/cd-top/js/cd-top.js}"></script>
 <script th:src="@{/static/js/getCookie.js}"></script>
 
@@ -302,7 +304,6 @@
 <script th:src="@{/static/plugins/editor.md/lib/jquery.flowchart.min.js}"></script>
 <script th:src="@{/static/plugins/editor.md/lib/sequence-diagram.min.js}"></script>
 <script th:src="@{/static/plugins/editor.md/js/editormd.js}"></script>
-<script th:src="@{/static/plugins/prism/js/prism.js}"></script>
 
 
 
@@ -458,7 +459,6 @@
 			}
 		});
 	}
-	Prism.highlightAll();
 	$('#textarea').bind('keypress',function(event) {
 		if (event.shiftKey && event.keyCode === 13) {
 			// $('#textarea').val($("#textarea").val() + "\n")

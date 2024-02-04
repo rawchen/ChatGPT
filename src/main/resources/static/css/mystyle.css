@@ -227,8 +227,9 @@ pre ol {
 }
 
 pre ol li::marker {
+	color: #8b8b8b;
 	margin-top: revert;
-	content: counter(list-item) "  ";
+	content: counter(list-item) " ";
 }
 
 pre {
@@ -236,7 +237,7 @@ pre {
 	border-radius: 15px;
 	margin: 10px 0px;
 	color: #eaeaea;
-	background-color: #606677;
+	background-color: #3f4149;
 }
 
 pre.prettyprint.linenums.prettyprinted {

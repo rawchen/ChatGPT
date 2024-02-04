@@ -160,13 +160,18 @@ public class OpenAiController {
     }
 
     @ResponseBody
-    @PostMapping("/api/test")
-    public R search2(String text, String password) throws IOException {
+    @PostMapping("/api/test01")
+    public R test01(String text) throws IOException {
+        return new R().setText(text);
+    }
+
+    @ResponseBody
+    @PostMapping("/api/test02")
+    public R test02(String text, String password) throws IOException {
         if (!FileUtil.getFileContent("password.txt").equals(password)) {
             return new R().setText("Error: " + "认证失败！");
         }
         return new R().setText("success: " + text);
     }
-
 
 }
