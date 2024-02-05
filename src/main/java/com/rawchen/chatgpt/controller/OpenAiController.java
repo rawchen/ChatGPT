@@ -7,6 +7,7 @@ import com.rawchen.chatgpt.entity.Message;
 import com.rawchen.chatgpt.entity.ModelParam;
 import com.rawchen.chatgpt.entity.R;
 import com.rawchen.chatgpt.util.FileUtil;
+import com.rawchen.chatgpt.util.IpUtil;
 import com.rawchen.chatgpt.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,7 +62,12 @@ public class OpenAiController {
 
     @ResponseBody
     @PostMapping("/api/chat")
-    public R chat(String text) {
+    public R chat(HttpServletRequest request, String text) {
+        String ip = IpUtil.getIpAddr(request);
+        String provinceCityArea = IpUtil.getProvinceCityArea(ip);
+        String userAgent = request.getHeader("User-Agent");
+        log.info("userAgent: {}", userAgent);
+        log.info("IP: {}, provinceCityArea: {}, text: {}",ip , provinceCityArea, text);
         Map<String, Object> param = new HashMap<>();
         Message message = new Message().setRole("user").setContent(text);
         ArrayList<Message> messages = new ArrayList<>();
@@ -74,13 +81,14 @@ public class OpenAiController {
                 .body(paramJson.toJSONString())
                 .execute()
                 .body();
-        log.info("Chat Result: {}", body);
+        log.info("Chat Result: {}", body.substring(0, 80) + "...");
         JSONObject jsonObject = JSONObject.parseObject(body);
         JSONArray choices = jsonObject.getJSONArray("choices");
         if (choices == null || jsonObject.getJSONObject("error") != null) {
             JSONObject error = jsonObject.getJSONObject("error");
             if (error != null) {
                 String msg = error.getString("message");
+                log.error("Chat Result Error: {}", body);
                 return new R().setText("Error: " + msg);
             }
         } else {
@@ -172,6 +180,14 @@ public class OpenAiController {
             return new R().setText("Error: " + "认证失败！");
         }
         return new R().setText("success: " + text);
+    }
+
+    @ResponseBody
+    @PostMapping("/api/test03")
+    public R test03(HttpServletRequest request, String text) throws IOException {
+        String ip = IpUtil.getIpAddr(request);
+        String provinceCityArea = IpUtil.getProvinceCityArea(ip);
+        return new R().setText(text + "  " + provinceCityArea);
     }
 
 }

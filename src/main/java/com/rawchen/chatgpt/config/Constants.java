@@ -9,11 +9,11 @@ import java.io.File;
  */
 public class Constants {
 
-	public final static String CLASS_NAME = "Main";
-	public final static String CLASS_PATH = System.getProperty("user.dir") + File.separator + "src" + File.separator;
-	public final static String MEM_ARGS = "-Xmx200m";
-	public final static String EXECUTE_MAIN_METHOD_NAME = "main";
+	/**
+	 * GeoIP Databases: GeoLite2 City
+	 * @see <a href="https://www.maxmind.com/en/accounts/current/geoip/downloads">https://www.maxmind.com/en/accounts/current/geoip/downloads</a>
+	 */
+	public static final String GEO_LITE_2 = "/usr/local/GeoLite2-City.mmdb";
+//	public static final String GEO_LITE_2 = "/Users/rawchen/Downloads/GeoLite2-City.mmdb";
 
-	public Constants() {
-	}
 }
