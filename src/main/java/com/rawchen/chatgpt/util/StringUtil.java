@@ -87,4 +87,15 @@ public class StringUtil {
 			return url;
 		}
 	}
+
+	public static String subLog(String resultStr) {
+		return subLog(resultStr, 80);
+	}
+
+	public static String subLog(String resultStr, int number) {
+		if (StrUtil.isEmpty(resultStr)) {
+			return "";
+		}
+		return resultStr.length() > number ? resultStr.substring(0, number) + "..." : resultStr;
+	}
 }

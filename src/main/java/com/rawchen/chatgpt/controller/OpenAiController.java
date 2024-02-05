@@ -66,6 +66,7 @@ public class OpenAiController {
         String ip = IpUtil.getIpAddr(request);
         String provinceCityArea = IpUtil.getProvinceCityArea(ip);
         String userAgent = request.getHeader("User-Agent");
+        log.info("");
         log.info("userAgent: {}", userAgent);
         log.info("IP: {}, provinceCityArea: {}, text: {}",ip , provinceCityArea, text);
         Map<String, Object> param = new HashMap<>();
@@ -81,7 +82,7 @@ public class OpenAiController {
                 .body(paramJson.toJSONString())
                 .execute()
                 .body();
-        log.info("Chat Result: {}", body.substring(0, 80) + "...");
+        log.info("Chat Result: {}", StringUtil.subLog(body));
         JSONObject jsonObject = JSONObject.parseObject(body);
         JSONArray choices = jsonObject.getJSONArray("choices");
         if (choices == null || jsonObject.getJSONObject("error") != null) {
